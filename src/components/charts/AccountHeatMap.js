@@ -22,8 +22,8 @@ export default class AccountHeatMap extends Component {
       }
     } = this.props;
 
-    const hot1 = "#77312f";
-    const hot2 = "#f33d15";
+    const hot1 = "#d8d8d8";
+    const hot2 = "#26abe3";
     const bg = "#28272c";
 
     const max = (data, value = d => d) => Math.max(...data.map(value));
