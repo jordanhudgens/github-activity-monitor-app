@@ -9,6 +9,10 @@ class AccountHeatMap extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      activeCircle: {}
+    };
+
     this.handleMouseOver = this.handleMouseOver.bind(this);
   }
 
@@ -113,7 +117,22 @@ class AccountHeatMap extends Component {
                           const { row, column } = bin;
                           alert(JSON.stringify({ row, column, ...bin.bin }));
                         }}
-                        onMouseOver={this.handleMouseOver}
+                        onMouseOver={event => {
+                          const { row, column } = bin;
+                          const coords = localPoint(
+                            event.target.ownerSVGElement,
+                            event
+                          );
+                          this.props.showTooltip({
+                            tooltipLeft: coords.x,
+                            tooltipTop: coords.y,
+                            tooltipData: JSON.stringify({
+                              row,
+                              column,
+                              ...bin.bin
+                            })
+                          });
+                        }}
                         onMouseOut={hideTooltip}
                       />
                     );
