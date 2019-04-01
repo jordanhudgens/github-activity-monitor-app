@@ -166,6 +166,7 @@ export default class Dashboard extends Component {
             </div>
           </div>
         </div>
+
         <div className="dashboard-wrapper">
           {this.state.contentToShow !== "NEW" && accountList.length === 0 ? (
             <div className="empty-dashboard-wrapper">

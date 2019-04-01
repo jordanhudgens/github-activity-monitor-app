@@ -2,11 +2,23 @@ import React, { Component } from "react";
 import { Group } from "@vx/group";
 import { scaleLinear } from "@vx/scale";
 import { HeatmapCircle } from "@vx/heatmap";
-import { Manager, Reference, Popper } from "react-popper";
+import { withTooltip, TooltipWithBounds } from "@vx/tooltip";
+import { localPoint } from "@vx/event";
 
-export default class AccountHeatMap extends Component {
+class AccountHeatMap extends Component {
   constructor(props) {
     super(props);
+
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+  }
+
+  handleMouseOver(event, datum) {
+    const coords = localPoint(event.target.ownerSVGElement, event);
+    this.props.showTooltip({
+      tooltipLeft: coords.x,
+      tooltipTop: coords.y,
+      tooltipData: datum
+    });
   }
 
   render() {
@@ -20,7 +32,12 @@ export default class AccountHeatMap extends Component {
         left: 20,
         right: 20,
         bottom: 110
-      }
+      },
+      tooltipData,
+      tooltipLeft,
+      tooltipTop,
+      tooltipOpen,
+      hideTooltip
     } = this.props;
 
     const hot1 = "#d8d8d8";
@@ -67,15 +84,7 @@ export default class AccountHeatMap extends Component {
     yScale.range([yMax, 0]);
 
     return (
-      <Manager>
-        <Popper placement="right">
-          {({ ref, style, placement, arrowProps }) => (
-            <div ref={ref} style={style} data-placement={placement}>
-              Popper element
-              <div ref={arrowProps.ref} style={arrowProps.style} />
-            </div>
-          )}
-        </Popper>
+      <React.Fragment>
         <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} rx={14} fill={bg} />
           <Group top={margin.top} left={margin.left}>
@@ -92,31 +101,21 @@ export default class AccountHeatMap extends Component {
                 return heatmap.map(bins => {
                   return bins.map(bin => {
                     return (
-                      <Reference>
-                        {({ ref }) => (
-                          <circle
-                            key={`heatmap-circle-${bin.row}-${bin.column}`}
-                            className="vx-heatmap-circle"
-                            cx={bin.cx}
-                            cy={bin.cy}
-                            r={bin.r}
-                            fill={bin.color}
-                            fillOpacity={bin.opacity}
-                            onClick={event => {
-                              const { row, column } = bin;
-                              alert(
-                                JSON.stringify({ row, column, ...bin.bin })
-                              );
-                            }}
-                            onMouseEnter={event => {
-                              const { row, column } = bin;
-                              console.log(
-                                JSON.stringify({ row, column, ...bin.bin })
-                              );
-                            }}
-                          />
-                        )}
-                      </Reference>
+                      <circle
+                        key={`heatmap-circle-${bin.row}-${bin.column}`}
+                        className="vx-heatmap-circle"
+                        cx={bin.cx}
+                        cy={bin.cy}
+                        r={bin.r}
+                        fill={bin.color}
+                        fillOpacity={bin.opacity}
+                        onClick={event => {
+                          const { row, column } = bin;
+                          alert(JSON.stringify({ row, column, ...bin.bin }));
+                        }}
+                        onMouseOver={this.handleMouseOver}
+                        onMouseOut={hideTooltip}
+                      />
                     );
                   });
                 });
@@ -124,7 +123,20 @@ export default class AccountHeatMap extends Component {
             </HeatmapCircle>
           </Group>
         </svg>
-      </Manager>
+
+        {tooltipOpen && (
+          <TooltipWithBounds
+            // set this to random so it correctly updates with parent bounds
+            key={Math.random()}
+            top={tooltipTop}
+            left={tooltipLeft}
+          >
+            Data value <strong>{tooltipData}</strong>
+          </TooltipWithBounds>
+        )}
+      </React.Fragment>
     );
   }
 }
+
+export default withTooltip(AccountHeatMap);
