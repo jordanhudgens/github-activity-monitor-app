@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactVivus from "react-vivus";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import _ from "lodash";
 
+import MainLoader from "../../components/loaders/MainLoader";
 import githubLogo from "../../components/svgs/github-logo.svg";
 import UserDataCard from "../../components/cards/UserDataCard";
 import ChoroplethMap from "../../components/maps/ChoroplethMap";
@@ -99,7 +99,7 @@ export default class Dashboard extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <div>Loading...</div>;
+      return <MainLoader />;
     }
 
     let accountList = [];

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Group } from "@vx/group";
 import { scaleLinear } from "@vx/scale";
 import { HeatmapCircle } from "@vx/heatmap";
+import { Manager, Reference, Popper } from "react-popper";
 
 export default class AccountHeatMap extends Component {
   constructor(props) {
@@ -66,42 +67,64 @@ export default class AccountHeatMap extends Component {
     yScale.range([yMax, 0]);
 
     return (
-      <svg width={width} height={height}>
-        <rect x={0} y={0} width={width} height={height} rx={14} fill={bg} />
-        <Group top={margin.top} left={margin.left}>
-          <HeatmapCircle
-            data={data}
-            xScale={xScale}
-            yScale={yScale}
-            colorScale={circleColorScale}
-            opacityScale={opacityScale}
-            radius={radius}
-            gap={2}
-          >
-            {heatmap => {
-              return heatmap.map(bins => {
-                return bins.map(bin => {
-                  return (
-                    <circle
-                      key={`heatmap-circle-${bin.row}-${bin.column}`}
-                      className="vx-heatmap-circle"
-                      cx={bin.cx}
-                      cy={bin.cy}
-                      r={bin.r}
-                      fill={bin.color}
-                      fillOpacity={bin.opacity}
-                      onClick={event => {
-                        const { row, column } = bin;
-                        alert(JSON.stringify({ row, column, ...bin.bin }));
-                      }}
-                    />
-                  );
+      <Manager>
+        <Popper placement="right">
+          {({ ref, style, placement, arrowProps }) => (
+            <div ref={ref} style={style} data-placement={placement}>
+              Popper element
+              <div ref={arrowProps.ref} style={arrowProps.style} />
+            </div>
+          )}
+        </Popper>
+        <svg width={width} height={height}>
+          <rect x={0} y={0} width={width} height={height} rx={14} fill={bg} />
+          <Group top={margin.top} left={margin.left}>
+            <HeatmapCircle
+              data={data}
+              xScale={xScale}
+              yScale={yScale}
+              colorScale={circleColorScale}
+              opacityScale={opacityScale}
+              radius={radius}
+              gap={2}
+            >
+              {heatmap => {
+                return heatmap.map(bins => {
+                  return bins.map(bin => {
+                    return (
+                      <Reference>
+                        {({ ref }) => (
+                          <circle
+                            key={`heatmap-circle-${bin.row}-${bin.column}`}
+                            className="vx-heatmap-circle"
+                            cx={bin.cx}
+                            cy={bin.cy}
+                            r={bin.r}
+                            fill={bin.color}
+                            fillOpacity={bin.opacity}
+                            onClick={event => {
+                              const { row, column } = bin;
+                              alert(
+                                JSON.stringify({ row, column, ...bin.bin })
+                              );
+                            }}
+                            onMouseEnter={event => {
+                              const { row, column } = bin;
+                              console.log(
+                                JSON.stringify({ row, column, ...bin.bin })
+                              );
+                            }}
+                          />
+                        )}
+                      </Reference>
+                    );
+                  });
                 });
-              });
-            }}
-          </HeatmapCircle>
-        </Group>
-      </svg>
+              }}
+            </HeatmapCircle>
+          </Group>
+        </svg>
+      </Manager>
     );
   }
 }
