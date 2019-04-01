@@ -9,10 +9,6 @@ class AccountHeatMap extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      activeCircle: {}
-    };
-
     this.handleMouseOver = this.handleMouseOver.bind(this);
   }
 
@@ -145,11 +141,12 @@ class AccountHeatMap extends Component {
 
         {tooltipOpen && (
           <TooltipWithBounds
-            // set this to random so it correctly updates with parent bounds
             key={Math.random()}
             top={tooltipTop}
             left={tooltipLeft}
           >
+            <h1>Hey {tooltipData.avatar_url}</h1>
+            <img src={tooltipData["avatar_url"]} />
             Data value <strong>{tooltipData}</strong>
           </TooltipWithBounds>
         )}
