@@ -123,9 +123,7 @@ class AccountHeatMap extends Component {
                             tooltipLeft: coords.x,
                             tooltipTop: coords.y,
                             tooltipData: JSON.stringify({
-                              row,
-                              column,
-                              ...bin.bin
+                              data: bin.bin
                             })
                           });
                         }}
@@ -145,9 +143,21 @@ class AccountHeatMap extends Component {
             top={tooltipTop}
             left={tooltipLeft}
           >
-            <h1>Hey {tooltipData.avatar_url}</h1>
-            <img src={tooltipData["avatar_url"]} />
-            Data value <strong>{tooltipData}</strong>
+            <div className="tooltip-wrapper">
+              <img
+                class="tooltip-avatar"
+                src={JSON.parse(tooltipData)["data"]["avatar_url"]}
+              />
+              <div className="tooltip-data-wrapper">
+                <div className="tooltip-data-text">
+                  {JSON.parse(tooltipData)["data"]["count"]}
+                </div>
+              </div>
+
+              <div className="tooltip-username">
+                {JSON.parse(tooltipData)["data"]["login"]}
+              </div>
+            </div>
           </TooltipWithBounds>
         )}
       </React.Fragment>
