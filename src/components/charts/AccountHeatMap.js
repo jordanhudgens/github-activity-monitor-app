@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import moment from "moment";
 import { Group } from "@vx/group";
 import { scaleLinear } from "@vx/scale";
 import { HeatmapCircle } from "@vx/heatmap";
 import { withTooltip, TooltipWithBounds } from "@vx/tooltip";
 import { localPoint } from "@vx/event";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class AccountHeatMap extends Component {
   constructor(props) {
@@ -148,10 +150,27 @@ class AccountHeatMap extends Component {
                 class="tooltip-avatar"
                 src={JSON.parse(tooltipData)["data"]["avatar_url"]}
               />
+
               <div className="tooltip-data-wrapper">
-                <div className="tooltip-data-text">
+                <FontAwesomeIcon icon="calendar-check" />
+                <div className="tooltip-data-element-lg">
+                  {moment(JSON.parse(tooltipData)["data"]["date"]).format("Do")}
+                </div>
+
+                <div className="tooltip-data-element-sm">
+                  {moment(JSON.parse(tooltipData)["data"]["date"]).format(
+                    "MMM"
+                  )}
+                </div>
+              </div>
+
+              <div className="tooltip-data-wrapper">
+                <FontAwesomeIcon icon="code-branch" />
+                <div className="tooltip-data-element-lg">
                   {JSON.parse(tooltipData)["data"]["count"]}
                 </div>
+
+                <div className="tooltip-data-element-sm">commits</div>
               </div>
 
               <div className="tooltip-username">
