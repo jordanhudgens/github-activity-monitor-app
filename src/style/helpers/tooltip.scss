@@ -3,30 +3,36 @@
     width: 150px;
   }
 
-  .tooltip-data-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  .tooltip-data-wrappers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+    .tooltip-data-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
 
-    svg {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
+      svg {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+      }
 
-    .tooltip-data-element-lg {
-      font-size: 2.5em;
-      margin-bottom: 15px;
-      font-weight: 900;
-    }
+      .tooltip-data-element-lg {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        font-weight: 900;
+      }
 
-    .tooltip-data-element-sm {
-      color: $dark-theme;
-      text-transform: uppercase;
-      font-weight: 900;
+      .tooltip-data-element-sm {
+        color: $dark-theme;
+        text-transform: uppercase;
+        font-weight: 900;
+        font-size: 0.9em;
+      }
     }
   }
 

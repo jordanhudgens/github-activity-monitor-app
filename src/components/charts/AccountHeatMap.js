@@ -151,26 +151,30 @@ class AccountHeatMap extends Component {
                 src={JSON.parse(tooltipData)["data"]["avatar_url"]}
               />
 
-              <div className="tooltip-data-wrapper">
-                <FontAwesomeIcon icon="calendar-check" />
-                <div className="tooltip-data-element-lg">
-                  {moment(JSON.parse(tooltipData)["data"]["date"]).format("Do")}
+              <div className="tooltip-data-wrappers">
+                <div className="tooltip-data-wrapper">
+                  <FontAwesomeIcon icon="calendar-check" />
+                  <div className="tooltip-data-element-lg">
+                    {moment(JSON.parse(tooltipData)["data"]["date"]).format(
+                      "Do"
+                    )}
+                  </div>
+
+                  <div className="tooltip-data-element-sm">
+                    {moment(JSON.parse(tooltipData)["data"]["date"]).format(
+                      "MMM"
+                    )}
+                  </div>
                 </div>
 
-                <div className="tooltip-data-element-sm">
-                  {moment(JSON.parse(tooltipData)["data"]["date"]).format(
-                    "MMM"
-                  )}
-                </div>
-              </div>
+                <div className="tooltip-data-wrapper">
+                  <FontAwesomeIcon icon="code-branch" />
+                  <div className="tooltip-data-element-lg">
+                    {JSON.parse(tooltipData)["data"]["count"]}
+                  </div>
 
-              <div className="tooltip-data-wrapper">
-                <FontAwesomeIcon icon="code-branch" />
-                <div className="tooltip-data-element-lg">
-                  {JSON.parse(tooltipData)["data"]["count"]}
+                  <div className="tooltip-data-element-sm">commits</div>
                 </div>
-
-                <div className="tooltip-data-element-sm">commits</div>
               </div>
 
               <div className="tooltip-username">
