@@ -14,7 +14,8 @@ const UserDataCard = props => {
       { withCredentials: true }
     )
       .then(response => {
-        console.log("delete res", response);
+        props.handleAccountFollowedDeletion(props.account);
+        return response;
       })
       .catch(error => {
         console.log("removed...", error);

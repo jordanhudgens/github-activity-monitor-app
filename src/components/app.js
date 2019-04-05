@@ -31,6 +31,15 @@ class App extends Component {
     );
     this.handleAccountAddition = this.handleAccountAddition.bind(this);
     this.populateAccounts = this.populateAccounts.bind(this);
+    this.removeAccountFollowed = this.removeAccountFollowed.bind(this);
+  }
+
+  removeAccountFollowed(account) {
+    this.setState({
+      accountsFollowed: this.state.accountsFollowed.filter(accountFollowed => {
+        return accountFollowed.id !== account.id;
+      })
+    });
   }
 
   populateAccounts(accountsFollowed) {
@@ -128,6 +137,7 @@ class App extends Component {
             accountsFollowed={this.state.accountsFollowed}
             handleAccountAddition={this.handleAccountAddition}
             handleLogout={this.handleLogout}
+            removeAccountFollowed={this.removeAccountFollowed}
           />
         )}
       />,

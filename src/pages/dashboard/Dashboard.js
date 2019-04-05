@@ -27,6 +27,14 @@ export default class Dashboard extends Component {
       this
     );
     this.handleLogoutLinkClick = this.handleLogoutLinkClick.bind(this);
+
+    this.handleAccountFollowedDeletion = this.handleAccountFollowedDeletion.bind(
+      this
+    );
+  }
+
+  handleAccountFollowedDeletion(account) {
+    this.props.removeAccountFollowed(account);
   }
 
   handleLogoutLinkClick() {
@@ -106,7 +114,13 @@ export default class Dashboard extends Component {
 
     if (this.props.accountsFollowed && this.props.accountsFollowed.length > 0) {
       accountList = this.props.accountsFollowed.map(account => {
-        return <UserDataCard key={account.id} account={account} />;
+        return (
+          <UserDataCard
+            key={account.id}
+            account={account}
+            handleAccountFollowedDeletion={this.handleAccountFollowedDeletion}
+          />
+        );
       });
     }
 
