@@ -2,10 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
+import Axios from "axios";
 
 const UserDataCard = props => {
-  const { login, avatar_url, events } = props.account;
+  const { id, login, avatar_url, events } = props.account;
   let latestEvent;
+
+  const handleDelete = () => {
+    Axios.delete(
+      `https://bottega-activity-tracker-api.herokuapp.com/accounts/${id}`,
+      { withCredentials: true }
+    )
+      .then(response => {
+        console.log("delete res", response);
+      })
+      .catch(error => {
+        console.log("removed...", error);
+      });
+  };
 
   if (events.length > 0) {
     latestEvent = events.sort(function compare(a, b) {
@@ -57,7 +71,7 @@ const UserDataCard = props => {
           </div>
 
           <div className="action-links">
-            <a>
+            <a onClick={handleDelete}>
               <FontAwesomeIcon icon="user-times" />
               Remove
             </a>
