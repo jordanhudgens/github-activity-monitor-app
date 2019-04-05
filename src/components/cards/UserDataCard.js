@@ -88,6 +88,18 @@ const UserDataCard = props => {
           <div className="data-wrapper">
             {login} currently does not have any activity
           </div>
+
+          <div className="action-links">
+            <a onClick={handleDelete}>
+              <FontAwesomeIcon icon="user-times" />
+              Remove
+            </a>
+
+            <a href={`https://github.com/${login}`} target="_blank">
+              <FontAwesomeIcon icon="external-link-alt" />
+              GitHub Profile
+            </a>
+          </div>
         </div>
       )}
     </div>
