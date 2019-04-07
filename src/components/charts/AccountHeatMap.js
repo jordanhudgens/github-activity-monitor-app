@@ -147,7 +147,7 @@ class AccountHeatMap extends Component {
           >
             <div className="tooltip-wrapper">
               <img
-                class="tooltip-avatar"
+                className="tooltip-avatar"
                 src={JSON.parse(tooltipData)["data"]["avatar_url"]}
               />
 

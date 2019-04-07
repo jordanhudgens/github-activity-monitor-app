@@ -23,6 +23,8 @@ class ChoroplethMap extends Component {
           return [stateAbbreviation, response.data[stateAbbreviation].length];
         });
 
+        debugger;
+
         this.setState({ data: data, isLoading: false });
         this.mapSetup();
       })
