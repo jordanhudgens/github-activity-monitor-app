@@ -23,8 +23,6 @@ class ChoroplethMap extends Component {
           return [stateAbbreviation, response.data[stateAbbreviation].length];
         });
 
-        debugger;
-
         this.setState({ data: data, isLoading: false });
         this.mapSetup();
       })
@@ -105,15 +103,32 @@ class ChoroplethMap extends Component {
   }
 
   render() {
+    const locationDataTable = () => {
+      return this.state.data.map(location => {
+        return (
+          <div className="map-data-element">
+            <div className="state">{location[0]}</div>
+            <div className="number">{location[1]}</div>
+          </div>
+        );
+      });
+    };
+
     return (
-      <div
-        id="cloropleth_map"
-        style={{
-          height: "500px",
-          width: "100%",
-          marginTop: "-150px"
-        }}
-      />
+      <div className="map-wrapper">
+        <div className="map-data-table">
+          <div className="map-data-table-header">Data Breakdown</div>
+          {locationDataTable()}
+        </div>
+        <div
+          id="cloropleth_map"
+          style={{
+            height: "500px",
+            width: "100%",
+            marginTop: "-150px"
+          }}
+        />
+      </div>
     );
   }
 }
