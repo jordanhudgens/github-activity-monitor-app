@@ -104,7 +104,10 @@ class ChoroplethMap extends Component {
 
   render() {
     const locationDataTable = () => {
-      return this.state.data.map(location => {
+      const sortedLocations = this.state.data.sort(function compare(a, b) {
+        return b[1] - a[1];
+      });
+      return sortedLocations.map(location => {
         return (
           <div className="map-data-element">
             <div className="state">{location[0]}</div>
