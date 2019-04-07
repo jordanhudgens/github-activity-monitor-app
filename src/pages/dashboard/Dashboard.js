@@ -18,8 +18,7 @@ export default class Dashboard extends Component {
 
     this.state = {
       isLoading: true,
-      contentToShow: "CHART",
-      groupedEvents: []
+      contentToShow: "CHART"
     };
 
     this.handlePillClick = this.handlePillClick.bind(this);
@@ -76,40 +75,11 @@ export default class Dashboard extends Component {
       .catch(error => console.log("getAccounts error", error));
   }
 
-  getGroupedEvents() {
-    axios
-      .get(
-        "https://bottega-activity-tracker-api.herokuapp.com/grouped_events",
-        { withCredentials: true }
-      )
-      .then(response => {
-        this.setState({
-          isLoading: false,
-          groupedEvents: response.data.events
-        });
-      })
-      .catch(error => {
-        console.log("getGroupedEvents error", error);
-      });
-  }
-
   componentWillMount() {
     this.getAccounts();
-    this.getGroupedEvents();
   }
 
-  // TODO
-  // The API is auto creating the events when an account is created.
-  // Github API limits 'events'. So get the total number of pages from API header res
-  // And create all 300 max events and store in db.
-  // Make sure to add some type of id from github and then create rake task that iterates through
-  // each account daily and adds any new events.
-
   render() {
-    if (this.state.isLoading) {
-      return <MainLoader />;
-    }
-
     let accountList = [];
 
     if (this.props.accountsFollowed && this.props.accountsFollowed.length > 0) {
@@ -129,7 +99,7 @@ export default class Dashboard extends Component {
         return (
           <div>
             <AccountHeatMap
-              data={this.state.groupedEvents}
+              data={this.props.groupedEvents}
               width={1200}
               height={600}
             />

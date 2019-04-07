@@ -19,7 +19,8 @@ class App extends Component {
       isLoading: true,
       loggedInStatus: "NOT_LOGGED_IN",
       user: {},
-      accountsFollowed: []
+      accountsFollowed: [],
+      groupedEvents: []
     };
 
     Icons();
@@ -50,6 +51,24 @@ class App extends Component {
     this.setState({
       accountsFollowed: [accountAdded].concat(this.state.accountsFollowed)
     });
+    this.getGroupedEvents();
+  }
+
+  getGroupedEvents() {
+    axios
+      .get(
+        "https://bottega-activity-tracker-api.herokuapp.com/grouped_events",
+        { withCredentials: true }
+      )
+      .then(response => {
+        this.setState({
+          isLoading: false,
+          groupedEvents: response.data.events
+        });
+      })
+      .catch(error => {
+        console.log("getGroupedEvents error", error);
+      });
   }
 
   componentDidMount() {
@@ -70,6 +89,7 @@ class App extends Component {
           this.setState({
             loggedInStatus: "LOGGED_IN"
           });
+          this.getGroupedEvents();
         } else if (
           !response.data.logged_in &&
           this.state.loggedInStatus === "LOGGED_IN"
@@ -138,6 +158,7 @@ class App extends Component {
             handleAccountAddition={this.handleAccountAddition}
             handleLogout={this.handleLogout}
             removeAccountFollowed={this.removeAccountFollowed}
+            groupedEvents={this.state.groupedEvents}
           />
         )}
       />,
