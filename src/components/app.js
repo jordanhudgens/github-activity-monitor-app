@@ -40,6 +40,7 @@ class App extends Component {
         return accountFollowed.id !== account.id;
       })
     });
+    this.getGroupedEvents();
   }
 
   populateAccounts(accountsFollowed) {
