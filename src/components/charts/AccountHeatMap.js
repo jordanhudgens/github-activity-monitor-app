@@ -112,8 +112,12 @@ class AccountHeatMap extends Component {
                         fill={bin.color}
                         fillOpacity={bin.opacity}
                         onClick={event => {
-                          const { row, column } = bin;
-                          alert(JSON.stringify({ row, column, ...bin.bin }));
+                          window.open(
+                            `https://github.com/${
+                              bin.bin.login
+                            }?tab=repositories`,
+                            "_blank"
+                          );
                         }}
                         onMouseOver={event => {
                           const { row, column } = bin;
