@@ -7,7 +7,6 @@ import MainLoader from "../components/loaders/MainLoader";
 import Home from "../pages/Home";
 import Dashboard from "../pages/dashboard/Dashboard";
 import NoMatch from "../pages/errors/NoMatch";
-import DashboardNavigation from "./navigation/DashboardNavigation";
 import CorporateNavigation from "./navigation/CorporateNavigation";
 import AccountDetail from "../pages/dashboard/AccountDetail";
 
@@ -55,6 +54,7 @@ class App extends Component {
   }
 
   getGroupedEvents() {
+    this.setState({ isLoading: true });
     axios
       .get(
         "https://bottega-activity-tracker-api.herokuapp.com/grouped_events",
@@ -99,9 +99,7 @@ class App extends Component {
           });
         }
 
-        this.setState({
-          isLoading: false
-        });
+        this.setState({ isLoading: false });
       })
       .catch(error => {
         console.log("checkLoginStatus error", error);
@@ -120,6 +118,8 @@ class App extends Component {
       loggedInStatus: "LOGGED_IN",
       user: data.user
     });
+
+    this.getGroupedEvents();
   }
 
   handleLogout() {

@@ -4,7 +4,6 @@ import ReactVivus from "react-vivus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import _ from "lodash";
 
-import MainLoader from "../../components/loaders/MainLoader";
 import githubLogo from "../../components/svgs/github-logo.svg";
 import UserDataCard from "../../components/cards/UserDataCard";
 import ChoroplethMap from "../../components/maps/ChoroplethMap";
