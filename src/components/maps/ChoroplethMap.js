@@ -4,6 +4,10 @@ import * as d3 from "d3";
 import UsaJson from "../data/Usa.topo.json";
 import Axios from "axios";
 
+// Project 3 TODO
+// Replace with animated react motion d3 map
+// https://www.react-simple-maps.io/with-react-motion
+
 class ChoroplethMap extends Component {
   constructor() {
     super();
