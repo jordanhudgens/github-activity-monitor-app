@@ -30,10 +30,10 @@ class AccountHeatMap extends Component {
       height,
       separation = 20,
       margin = {
-        top: 10,
-        left: 20,
-        right: 20,
-        bottom: 110
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
       },
       tooltipData,
       tooltipLeft,
@@ -44,7 +44,7 @@ class AccountHeatMap extends Component {
 
     const hot1 = "#d8d8d8";
     const hot2 = "#26abe3";
-    const bg = "#28272c";
+    const bg = "transparent";
 
     const max = (data, value = d => d) => Math.max(...data.map(value));
     const min = (data, value = d => d) => Math.min(...data.map(value));

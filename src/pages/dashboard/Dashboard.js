@@ -93,6 +93,8 @@ export default class Dashboard extends Component {
       });
     }
 
+    // TODO
+    // create wrapper for the heat map to manage padding
     const contentRenderer = () => {
       if (this.state.contentToShow === "CHART") {
         return (
@@ -100,7 +102,7 @@ export default class Dashboard extends Component {
             <AccountHeatMap
               data={this.props.groupedEvents}
               width={1200}
-              height={600}
+              height={this.props.accountsFollowed.length * 27}
             />
           </div>
         );
