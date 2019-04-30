@@ -98,7 +98,7 @@ export default class Dashboard extends Component {
     const contentRenderer = () => {
       if (this.state.contentToShow === "CHART") {
         return (
-          <div>
+          <div className="account-heat-map-wrapper">
             <AccountHeatMap
               data={this.props.groupedEvents}
               width={1200}
