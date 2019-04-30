@@ -93,8 +93,6 @@ export default class Dashboard extends Component {
       });
     }
 
-    // TODO
-    // create wrapper for the heat map to manage padding
     const contentRenderer = () => {
       if (this.state.contentToShow === "CHART") {
         return (

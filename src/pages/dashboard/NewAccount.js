@@ -24,6 +24,7 @@ export default class NewAccount extends Component {
 
     this.state = {
       login: "",
+      buttonState: "READY",
       selectedState: {},
       stateList: [
         { value: "AL", label: "AL" },
@@ -95,6 +96,9 @@ export default class NewAccount extends Component {
 
   handleSubmit(event) {
     const { login, state } = this.state;
+    this.setState({
+      buttonState: "LOADING"
+    });
 
     axios
       .post(
@@ -112,6 +116,7 @@ export default class NewAccount extends Component {
           login: "",
           state: "",
           error: "",
+          buttonState: "READY",
           selectedState: {}
         });
 
@@ -168,9 +173,24 @@ export default class NewAccount extends Component {
         </div>
 
         <div className="login-btn-wrapper">
-          <button className="primary-rounded-button button-small" type="submit">
-            Start tracking
-          </button>
+          {this.state.buttonState === "LOADING" ? (
+            <button
+              disabled
+              className="primary-rounded-button button-small"
+              type="submit"
+            >
+              Getting Account Details <FontAwesomeIcon icon="spinner" spin />
+            </button>
+          ) : null}
+
+          {this.state.buttonState === "READY" ? (
+            <button
+              className="primary-rounded-button button-small"
+              type="submit"
+            >
+              Start tracking
+            </button>
+          ) : null}
         </div>
       </form>
     );
