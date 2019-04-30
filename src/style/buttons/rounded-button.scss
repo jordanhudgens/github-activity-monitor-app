@@ -11,6 +11,10 @@
 
 .primary-rounded-button {
   @include base-btn();
+
+  svg {
+    margin-left: 10px;
+  }
 }
 
 .button-small {
