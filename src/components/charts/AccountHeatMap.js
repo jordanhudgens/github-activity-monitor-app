@@ -52,8 +52,8 @@ class AccountHeatMap extends Component {
     const bins = d => d.bins;
     const count = d => d.count;
 
-    const colorMax = max(data, d => max(bins(d), count));
-    const bucketSizeMax = max(data, d => bins(d).length);
+    let colorMax = max(data, d => max(bins(d), count));
+    let bucketSizeMax = max(data, d => bins(d).length);
 
     const xScale = scaleLinear({
       domain: [0, data.length]
@@ -88,7 +88,6 @@ class AccountHeatMap extends Component {
     return (
       <React.Fragment>
         <svg width={width} height={height}>
-          <rect x={0} y={0} width={width} height={height} rx={14} fill={bg} />
           <Group top={margin.top} left={margin.left}>
             <HeatmapCircle
               data={data}
