@@ -1,6 +1,23 @@
-.account-heat-map-wrapper {
-  background-color: $dark-theme;
-  border-radius: 5px;
-  padding-left: 20px;
-  padding-bottom: 20px;
+.dashboard-heat-map-container {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  grid-gap: 21px;
+
+  .account-names {
+    font-size: 1.2em;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-top: 32px;
+
+    .username {
+      margin-bottom: 13.1px;
+    }
+  }
+
+  .account-heat-map-wrapper {
+    background-color: $dark-theme;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+  }
 }
