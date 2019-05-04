@@ -158,7 +158,9 @@ export default class Dashboard extends Component {
         </div>
 
         <div className="dashboard-wrapper">
-          {this.state.contentToShow !== "NEW" && accountList.length === 0 ? (
+          {this.state.contentToShow !== "NEW" &&
+          accountList.length === 0 &&
+          !this.state.isLoading ? (
             <div className="empty-dashboard-wrapper">
               <div className="content">
                 <ReactVivus
