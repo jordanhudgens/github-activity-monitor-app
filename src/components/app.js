@@ -44,7 +44,7 @@ class App extends Component {
   }
 
   populateAccounts(accountsFollowed) {
-    this.setState({ accountsFollowed });
+    this.setState({ accountsFollowed: accountsFollowed.reverse() });
   }
 
   handleAccountAddition(accountAdded) {
