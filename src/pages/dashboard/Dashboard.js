@@ -93,27 +93,15 @@ export default class Dashboard extends Component {
       });
     }
 
+    const accountNames = this.props.accountsFollowed.map(account => {
+      return <div className="username">{account.login}</div>;
+    });
+
     const contentRenderer = () => {
       if (this.state.contentToShow === "CHART") {
         return (
           <div className="dashboard-heat-map-container">
-            <div className="account-names">
-              <div className="username">jordanhudgens</div>
-              <div className="username">elorest</div>
-              <div className="username">mjackson</div>
-              <div className="username">jordanhudgens</div>
-              <div className="username">jordanhudgens</div>
-              <div className="username">jordanhudgens</div>
-              <div className="username">jordanhudgens</div>
-              <div className="username">elorest</div>
-              <div className="username">mjackson</div>
-              <div className="username">elorest</div>
-              <div className="username">mjackson</div>
-              <div className="username">elorest</div>
-              <div className="username">mjackson</div>
-              <div className="username">elorest</div>
-              <div className="username">mjackson</div>
-            </div>
+            <div className="account-names">{accountNames}</div>
             <div className="account-heat-map-wrapper">
               <AccountHeatMap
                 data={this.props.groupedEvents}

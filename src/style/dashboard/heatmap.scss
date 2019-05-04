@@ -1,6 +1,6 @@
 .dashboard-heat-map-container {
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: 200px 1fr;
   grid-gap: 21px;
 
   .account-names {
@@ -8,9 +8,10 @@
     font-weight: 900;
     text-transform: uppercase;
     margin-top: 32px;
+    text-align: right;
 
     .username {
-      margin-bottom: 13.1px;
+      margin-bottom: 13px;
     }
   }
 
