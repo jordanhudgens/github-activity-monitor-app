@@ -41,6 +41,7 @@
 
 @media (min-width: 481px) and (max-width: 767px) {
   .corporate-navigation-wrapper {
+    height: 100% !important;
     flex-direction: column;
 
     .left-column {
@@ -54,7 +55,8 @@
             svg {
               margin-right: auto;
               width: 200px;
-              margin: 21px 0px;
+              padding-left: 20% !important;
+              margin-top: -42px;
             }
           }
         }
@@ -77,6 +79,7 @@
 
 @media (min-width: 320px) and (max-width: 480px) {
   .corporate-navigation-wrapper {
+    height: 100% !important;
     flex-direction: column;
 
     .left-column {
@@ -90,7 +93,8 @@
             svg {
               margin-right: auto;
               width: 200px;
-              margin: 21px 0px;
+              padding-left: 20% !important;
+              margin-top: -42px;
             }
           }
         }

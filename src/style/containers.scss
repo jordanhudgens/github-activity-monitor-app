@@ -22,6 +22,12 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 100px;
 
+    .left-column {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .right-column {
       display: flex;
       justify-content: center;
