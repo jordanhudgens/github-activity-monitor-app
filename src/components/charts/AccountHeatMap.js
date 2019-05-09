@@ -31,8 +31,8 @@ class AccountHeatMap extends Component {
       separation = 20,
       margin = {
         top: 0,
-        left: 20,
-        right: 20,
+        left: 0,
+        right: 0,
         bottom: 110
       },
       tooltipData,
@@ -44,7 +44,7 @@ class AccountHeatMap extends Component {
 
     const hot1 = "#d8d8d8";
     const hot2 = "#26abe3";
-    const bg = "#28272c";
+    const bg = "transparent";
 
     const max = (data, value = d => d) => Math.max(...data.map(value));
     const min = (data, value = d => d) => Math.min(...data.map(value));
@@ -88,7 +88,6 @@ class AccountHeatMap extends Component {
     return (
       <React.Fragment>
         <svg width={width} height={height}>
-          <rect x={0} y={0} width={width} height={height} rx={14} fill={bg} />
           <Group top={margin.top} left={margin.left}>
             <HeatmapCircle
               data={data}
