@@ -33,7 +33,7 @@ class AccountHeatMap extends Component {
         top: 0,
         left: 0,
         right: 0,
-        bottom: 110
+        bottom: 20
       },
       tooltipData,
       tooltipLeft,
@@ -44,7 +44,6 @@ class AccountHeatMap extends Component {
 
     const hot1 = "#d8d8d8";
     const hot2 = "#26abe3";
-    const bg = "transparent";
 
     const max = (data, value = d => d) => Math.max(...data.map(value));
     const min = (data, value = d => d) => Math.min(...data.map(value));

@@ -1,14 +1,17 @@
 .dashboard-heat-map-container {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  grid-gap: 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .account-names {
     font-size: 1.2em;
     font-weight: 900;
     text-transform: uppercase;
-    margin-top: 32px;
     text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 10px;
 
     .username {
       margin-bottom: 13px;
