@@ -31,9 +31,9 @@ class AccountHeatMap extends Component {
       separation = 20,
       margin = {
         top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
+        left: 20,
+        right: 20,
+        bottom: 110
       },
       tooltipData,
       tooltipLeft,
@@ -44,7 +44,7 @@ class AccountHeatMap extends Component {
 
     const hot1 = "#d8d8d8";
     const hot2 = "#26abe3";
-    const bg = "transparent";
+    const bg = "#28272c";
 
     const max = (data, value = d => d) => Math.max(...data.map(value));
     const min = (data, value = d => d) => Math.min(...data.map(value));
@@ -52,8 +52,8 @@ class AccountHeatMap extends Component {
     const bins = d => d.bins;
     const count = d => d.count;
 
-    let colorMax = max(data, d => max(bins(d), count));
-    let bucketSizeMax = max(data, d => bins(d).length);
+    const colorMax = max(data, d => max(bins(d), count));
+    const bucketSizeMax = max(data, d => bins(d).length);
 
     const xScale = scaleLinear({
       domain: [0, data.length]
@@ -88,6 +88,7 @@ class AccountHeatMap extends Component {
     return (
       <React.Fragment>
         <svg width={width} height={height}>
+          <rect x={0} y={0} width={width} height={height} rx={14} fill={bg} />
           <Group top={margin.top} left={margin.left}>
             <HeatmapCircle
               data={data}

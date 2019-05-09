@@ -106,7 +106,7 @@ export default class Dashboard extends Component {
               <AccountHeatMap
                 data={this.props.groupedEvents}
                 width={1200}
-                height={this.props.accountsFollowed.length * 27}
+                height={this.props.accountsFollowed.length * 29.5}
               />
             </div>
           </div>
@@ -158,9 +158,7 @@ export default class Dashboard extends Component {
         </div>
 
         <div className="dashboard-wrapper">
-          {this.state.contentToShow !== "NEW" &&
-          accountList.length === 0 &&
-          !this.state.isLoading ? (
+          {this.state.contentToShow !== "NEW" && accountList.length === 0 ? (
             <div className="empty-dashboard-wrapper">
               <div className="content">
                 <ReactVivus
