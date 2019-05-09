@@ -40,6 +40,11 @@
 */
 
 @media (min-width: 481px) and (max-width: 767px) {
+  .homepage-container {
+    .content {
+      grid-template-columns: 1fr;
+    }
+  }
   .corporate-navigation-wrapper {
     height: 100% !important;
     flex-direction: column;
@@ -78,6 +83,12 @@
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
+  .homepage-container {
+    .content {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .corporate-navigation-wrapper {
     height: 100% !important;
     flex-direction: column;
