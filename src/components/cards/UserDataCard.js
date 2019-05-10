@@ -123,12 +123,15 @@ export default class UserDataCard extends React.Component {
                     value={this.state.daysToHire}
                     onChange={this.handleHireDateValueChange}
                   />
+                  <button>Update</button>
                 </form>
-              ) : null}
-
-              {days_to_hire
-                ? `Days until hired: ${days_to_hire}`
-                : "Has not been hired yet"}
+              ) : (
+                <a onClick={() => console.log("yeasdfa")}>
+                  {days_to_hire
+                    ? `Days until hired: ${days_to_hire}`
+                    : "Has not been hired yet"}
+                </a>
+              )}
             </div>
           </div>
         ) : (
