@@ -84,7 +84,6 @@ export default class Dashboard extends Component {
         withCredentials: true
       })
       .then(response => {
-        debugger;
         this.setState({ hireRateData: response.data.hire_rate_data });
       })
       .catch(error => console.log("getAccounts error", error));
