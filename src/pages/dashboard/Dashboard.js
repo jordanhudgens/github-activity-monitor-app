@@ -17,7 +17,8 @@ export default class Dashboard extends Component {
 
     this.state = {
       isLoading: true,
-      contentToShow: "CHART"
+      contentToShow: "CHART",
+      windowWidth: 0
     };
 
     this.handlePillClick = this.handlePillClick.bind(this);
@@ -29,6 +30,7 @@ export default class Dashboard extends Component {
     this.handleAccountFollowedDeletion = this.handleAccountFollowedDeletion.bind(
       this
     );
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
   handleAccountFollowedDeletion(account) {
@@ -74,8 +76,14 @@ export default class Dashboard extends Component {
       .catch(error => console.log("getAccounts error", error));
   }
 
+  updateWindowDimensions() {
+    this.setState({ windowWidth: window.innerWidth });
+  }
+
   componentWillMount() {
     this.getAccounts();
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
   }
 
   render() {
@@ -100,7 +108,9 @@ export default class Dashboard extends Component {
             <div className="account-heat-map-wrapper">
               <AccountHeatMap
                 data={this.props.groupedEvents}
-                width={1200}
+                width={
+                  this.state.windowWidth <= 0 ? 0 : this.state.windowWidth - 100
+                }
                 height={
                   this.props.accountsFollowed.length < 10
                     ? this.props.accountsFollowed.length * 45
