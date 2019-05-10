@@ -16,6 +16,11 @@ export default class UserDataCard extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleHireDateUpdate = this.handleHireDateUpdate.bind(this);
     this.handleHireDateValueChange = this.handleHireDateValueChange.bind(this);
+    this.toggleHireDateForm = this.toggleHireDateForm.bind(this);
+  }
+
+  toggleHireDateForm() {
+    this.setState({ showDaysToHireForm: !this.state.showDaysToHireForm });
   }
 
   handleHireDateValueChange(event) {
@@ -123,10 +128,11 @@ export default class UserDataCard extends React.Component {
                     value={this.state.daysToHire}
                     onChange={this.handleHireDateValueChange}
                   />
-                  <button>Update</button>
+                  <button type="submit">Update</button>
+                  <a onClick={this.toggleHireDateForm}>Cancel</a>
                 </form>
               ) : (
-                <a onClick={() => console.log("yeasdfa")}>
+                <a onClick={this.toggleHireDateForm}>
                   {days_to_hire
                     ? `Days until hired: ${days_to_hire}`
                     : "Has not been hired yet"}
