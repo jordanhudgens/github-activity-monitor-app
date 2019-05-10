@@ -43,20 +43,22 @@ export default class UserDataCard extends React.Component {
       });
   }
 
-  handleHireDateUpdate() {
+  handleHireDateUpdate(event) {
     Axios.patch(
       `https://bottega-activity-tracker-api.herokuapp.com/accounts/${
         this.props.account.id
       }`,
-      { account: { days_to_hire: 2 } },
+      { account: { days_to_hire: this.state.daysToHire } },
       { withCredentials: true }
     )
       .then(response => {
-        console.log("hire date update res", response);
+        this.setState({ showDaysToHireForm: false });
       })
       .catch(error => {
         console.log("handleHireDateUpdate error", error);
       });
+
+    event.preventDefault();
   }
 
   render() {
@@ -138,8 +140,8 @@ export default class UserDataCard extends React.Component {
                 </form>
               ) : (
                 <a onClick={this.toggleHireDateForm}>
-                  {days_to_hire
-                    ? `Days until hired: ${days_to_hire}`
+                  {this.state.daysToHire
+                    ? `Days until hired: ${this.state.daysToHire}`
                     : "Has not been hired yet"}
                 </a>
               )}
