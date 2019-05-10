@@ -8,6 +8,10 @@ export default class UserDataCard extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      daysToHire: null
+    };
+
     this.handleDelete = this.handleDelete.bind(this);
     this.handleHireDateUpdate = this.handleHireDateUpdate.bind(this);
   }
@@ -45,7 +49,7 @@ export default class UserDataCard extends React.Component {
   }
 
   render() {
-    const { id, login, avatar_url, events } = this.props.account;
+    const { id, login, avatar_url, events, days_to_hire } = this.props.account;
     let latestEvent;
 
     if (events.length > 0) {
@@ -108,7 +112,10 @@ export default class UserDataCard extends React.Component {
                 GitHub Profile
               </a>
 
-              <a onClick={this.handleHireDateUpdate}>Days until hired</a>
+              <form onSubmit={this.handleHireDateUpdate}>
+                <input value={days_to_hire} />
+                Days until hired
+              </form>
             </div>
           </div>
         ) : (
