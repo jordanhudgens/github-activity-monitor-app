@@ -107,7 +107,14 @@ export default class Dashboard extends Component {
           <div className="dashboard-heat-map-container">
             <div className="account-heat-map-wrapper">
               <AccountHeatMap
-                data={this.props.groupedEvents}
+                data={
+                  this.state.windowWidth >= 1250
+                    ? this.props.groupedEvents
+                    : this.props.groupedEvents.slice(
+                        this.props.groupedEvents.length - 14,
+                        this.props.groupedEvents.length
+                      )
+                }
                 width={
                   this.state.windowWidth <= 0 ? 0 : this.state.windowWidth - 100
                 }

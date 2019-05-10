@@ -33,7 +33,7 @@ class AccountHeatMap extends Component {
         top: 0,
         left: 0,
         right: 0,
-        bottom: 20
+        bottom: 30
       },
       tooltipData,
       tooltipLeft,
