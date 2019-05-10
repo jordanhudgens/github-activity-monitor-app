@@ -9,11 +9,17 @@ export default class UserDataCard extends React.Component {
     super(props);
 
     this.state = {
-      daysToHire: null
+      daysToHire: this.props.account.days_to_hire,
+      showDaysToHireForm: false
     };
 
     this.handleDelete = this.handleDelete.bind(this);
     this.handleHireDateUpdate = this.handleHireDateUpdate.bind(this);
+    this.handleHireDateValueChange = this.handleHireDateValueChange.bind(this);
+  }
+
+  handleHireDateValueChange(event) {
+    this.setState({ daysToHire: event.target.value });
   }
 
   handleDelete() {
@@ -106,16 +112,23 @@ export default class UserDataCard extends React.Component {
                 <FontAwesomeIcon icon="user-times" />
                 Remove
               </a>
-
               <a href={`https://github.com/${login}`} target="_blank">
                 <FontAwesomeIcon icon="external-link-alt" />
                 GitHub Profile
               </a>
 
-              <form onSubmit={this.handleHireDateUpdate}>
-                <input value={days_to_hire} />
-                Days until hired
-              </form>
+              {this.state.showDaysToHireForm ? (
+                <form onSubmit={this.handleHireDateUpdate}>
+                  <input
+                    value={this.state.daysToHire}
+                    onChange={this.handleHireDateValueChange}
+                  />
+                </form>
+              ) : null}
+
+              {days_to_hire
+                ? `Days until hired: ${days_to_hire}`
+                : "Has not been hired yet"}
             </div>
           </div>
         ) : (
