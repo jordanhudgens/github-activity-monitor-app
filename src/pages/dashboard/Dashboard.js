@@ -10,6 +10,7 @@ import ChoroplethMap from "../../components/maps/ChoroplethMap";
 import NewAccount from "./NewAccount";
 import NavLogo from "../../components/svgs/NavLogo";
 import AccountHeatMap from "../../components/charts/AccountHeatMap";
+import HireRateGlyph from "../../components/charts/HireRateGlyph";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -139,6 +140,19 @@ export default class Dashboard extends Component {
             }
           />
         );
+      } else if (this.state.contentToShow === "HIRE_RATE") {
+        return (
+          <HireRateGlyph
+            height={500}
+            width={this.state.windowWidth - 42}
+            margin={{
+              right: 100,
+              left: 100,
+              top: 100,
+              bottom: 100
+            }}
+          />
+        );
       } else {
         return <div>Else...</div>;
       }
@@ -159,9 +173,10 @@ export default class Dashboard extends Component {
                 <a onClick={() => this.handlePillClick("CHART")}>Chart</a>
                 <a onClick={() => this.handlePillClick("FEED")}>Feed</a>
                 <a onClick={() => this.handlePillClick("MAP")}>Map</a>
-                <a onClick={() => this.handlePillClick("NEW")}>
-                  Add New Account
+                <a onClick={() => this.handlePillClick("HIRE_RATE")}>
+                  Hire Rate
                 </a>
+                <a onClick={() => this.handlePillClick("NEW")}>New Account</a>
               </div>
             </div>
 
