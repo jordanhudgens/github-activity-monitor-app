@@ -125,6 +125,7 @@ export default class UserDataCard extends React.Component {
               {this.state.showDaysToHireForm ? (
                 <form onSubmit={this.handleHireDateUpdate}>
                   <input
+                    className="input-element"
                     value={this.state.daysToHire}
                     onChange={this.handleHireDateValueChange}
                   />
