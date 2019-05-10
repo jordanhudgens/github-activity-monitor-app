@@ -19,7 +19,8 @@ export default class Dashboard extends Component {
     this.state = {
       isLoading: true,
       contentToShow: "CHART",
-      windowWidth: 0
+      windowWidth: 0,
+      hireRateData: []
     };
 
     this.handlePillClick = this.handlePillClick.bind(this);
@@ -77,6 +78,18 @@ export default class Dashboard extends Component {
       .catch(error => console.log("getAccounts error", error));
   }
 
+  getHireRateData() {
+    axios
+      .get("https://bottega-activity-tracker-api.herokuapp.com/hire_rates", {
+        withCredentials: true
+      })
+      .then(response => {
+        debugger;
+        this.setState({ hireRateData: response.data.hire_rate_data });
+      })
+      .catch(error => console.log("getAccounts error", error));
+  }
+
   updateWindowDimensions() {
     this.setState({ windowWidth: window.innerWidth });
   }
@@ -84,6 +97,7 @@ export default class Dashboard extends Component {
   componentWillMount() {
     this.getAccounts();
     this.updateWindowDimensions();
+    this.getHireRateData();
     window.addEventListener("resize", this.updateWindowDimensions);
   }
 
@@ -151,6 +165,7 @@ export default class Dashboard extends Component {
               top: 100,
               bottom: 100
             }}
+            data={this.state.hireRateData}
           />
         );
       } else {
