@@ -1,6 +1,8 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faAt,
+  faSave,
+  faWindowClose,
   faKey,
   faEdit,
   faTrash,
@@ -26,6 +28,8 @@ import {
 const Icons = () => {
   return library.add(
     faAt,
+    faSave,
+    faWindowClose,
     faKey,
     faTrash,
     faEdit,

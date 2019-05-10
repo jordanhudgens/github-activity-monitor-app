@@ -125,12 +125,16 @@ export default class UserDataCard extends React.Component {
               {this.state.showDaysToHireForm ? (
                 <form onSubmit={this.handleHireDateUpdate}>
                   <input
-                    className="input-element"
+                    className="inline-edit-input-element"
                     value={this.state.daysToHire}
                     onChange={this.handleHireDateValueChange}
                   />
-                  <button type="submit">Update</button>
-                  <a onClick={this.toggleHireDateForm}>Cancel</a>
+                  <button className="icon-button" type="submit">
+                    <FontAwesomeIcon icon="save" />
+                  </button>
+                  <a className="cancel-link" onClick={this.toggleHireDateForm}>
+                    <FontAwesomeIcon icon="window-close" />
+                  </a>
                 </form>
               ) : (
                 <a onClick={this.toggleHireDateForm}>

@@ -66,3 +66,11 @@ input {
   border-bottom: 2px solid $primary;
   margin-right: 20px !important;
 }
+
+.inline-edit-input-element {
+  color: $dark-theme;
+  outline: none;
+  border: 2px solid transparent;
+  border-bottom: 2px solid $primary;
+  margin-right: 20px !important;
+}
